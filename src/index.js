@@ -1,13 +1,28 @@
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+// Main assets:
+import './assets/main.css';
+
+// Main component:
+import App from './app.jsx';
+
+// Vitals utils:
 import reportWebVitals from './reportWebVitals';
 
+// Reducers:
+import baseReducer from './store/baseReducer';
+
+const mainReducer = combineReducers({
+  baseReducer: baseReducer,
+});
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={createStore(mainReducer)}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
